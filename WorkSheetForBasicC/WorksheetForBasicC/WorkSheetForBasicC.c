@@ -263,7 +263,7 @@ int main(int argc, const char** argv)   {   // Основная функция �
 // << 4.3 Файловая система>>
 
 // Создание и запись текстового файла
-
+/*
 FILE *f; // Указатель на создание файла
 
 int main(int argc, const char** argv) {
@@ -274,7 +274,7 @@ int main(int argc, const char** argv) {
     fclose(f);  // Закрыть файл после записи
 
 // Чтение из текстового файла
-/*
+
     f == fopen("filename.txt", "r");    // открыть файл в режиме чтениия
     char word[256];
     fscanf(f, "%s", &word);
@@ -291,6 +291,142 @@ int main(int argc, const char** argv) {
         printf("%s ", word);
     }
     fclose(f);
-*/
+
     return 0;
 }
+*/
+
+// << 4.4 Динамические выделения памяти >>
+
+// Процесс выделения памяти с помощю функции malloc()
+/*
+int main(int argc, const char** argv) {
+    int* area = (int*) malloc(123);   // Память выделена и размечена
+    return 0;
+} */
+
+// Узнать колличество выделения памяти c помощью функии sizeof()
+/*
+int main(int argc, const char** argv) {
+    int* area = (int*) malloc(123);   // Память выделена и расмечена + два способа (обычный и с момощью выделения памяти)
+    printf("%lu\n", sizeof(int));
+    const int SIZE = 10;
+    int* array = (int*) malloc(sizeof (int) * 10); // указали 40 байк размер файла
+    int array2[SIZE];
+    int i;
+    for (i = 0; i < SIZE; i++) {
+        *(array + i) = i * 10;
+    }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", *(array + i));
+    }
+    printf("\n");
+    for (i = 0; i < SIZE; i++) {
+        array2[i] = i * 10;
+    }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+    return 0;
+}
+*/
+// Очистить выделенную область памяти с помощью функции calloc()
+/*
+int main(int argc, const char** argv) {
+    int* area = (int*) malloc(123);   // Память выделена и расмечена + два способа (обычный и с момощью выделения памяти)
+    printf("%lu\n", sizeof(int));
+    const int SIZE = 10;
+    // int* array = (int*) malloc(sizeof (int) * 10); // указали 40 байк размер файла
+    int* array = (int*) calloc(SIZE, sizeof(int));
+    int array2[SIZE];
+    int i;
+    // for (i = 0; i < SIZE; i++) {
+    //     *(array + i) = i * 10;
+    //  }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", *(array + i));
+    }
+    printf("\n");
+    for (i = 0; i < SIZE; i++) {
+        array2[i] = i * 10;
+    }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", array2[i]);
+    }
+    printf("\n");
+    return 0;
+} */
+
+// Освобождение области памяти после её использования с помощью функции free()
+/*
+int main(int argc, const char** argv) {
+    int* area = (int*) malloc(123);   // Память выделена и расмечена + два способа (обычный и с момощью выделения памяти)
+    printf("%lu\n", sizeof(int));
+    const int SIZE = 10;
+    // int* array = (int*) malloc(sizeof (int) * 10); // указали 40 байк размер файла
+    int* array = (int*) calloc(SIZE, sizeof(int));
+    int array2[SIZE];
+    int i;
+    // for (i = 0; i < SIZE; i++) {
+    //     *(array + i) = i * 10;
+    //  }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", *(array + i));
+    }
+    free(array);
+    printf("\n");
+    for (i = 0; i < SIZE; i++) {
+        array2[i] = i * 10;
+    }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", array2[i]);
+    }
+    printf("\n");
+    return 0;
+} */
+
+// Изменение рамера уже выделенного блока памяти с помощью функции realloc()
+
+int main(int argc, const char** argv) {
+    int* area = (int*) malloc(123);   // Память выделена и расмечена + два способа (обычный и с момощью выделения памяти)
+    // printf("%lu\n", sizeof(int));
+    const int SIZE = 10;
+    // int* array = (int*) malloc(sizeof (int) * 10); // указали 40 байк размер файла
+    int* array = (int*) calloc(SIZE, sizeof(int));
+    int array2[SIZE];
+    int i;
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", *(array + i));
+    }
+    // free(array);
+    printf("\n");
+    for (i = 0; i < SIZE; i++) {
+        array2[i] = i * 10;
+    }
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", array2[i]);
+    }
+    int NEWSIZE = SIZE + 10;
+    array = realloc(array, NEWSIZE * sizeof (int));
+    for (i = 0; i < NEWSIZE; i++) {
+        *(array + i) = i * 10;
+    }
+    printf("\n");
+    for (i = 0; i < NEWSIZE; i++) {
+        printf("%d ", *(array + i));
+    }
+    free(array);
+
+    printf("\n");
+    return 0;
+}
+
+
+
+
+
+
+
+
+
