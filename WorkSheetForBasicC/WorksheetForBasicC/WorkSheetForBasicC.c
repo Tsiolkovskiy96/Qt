@@ -387,7 +387,7 @@ int main(int argc, const char** argv) {
 } */
 
 // Изменение рамера уже выделенного блока памяти с помощью функции realloc()
-
+/*
 int main(int argc, const char** argv) {
     int* area = (int*) malloc(123);   // Память выделена и расмечена + два способа (обычный и с момощью выделения памяти)
     // printf("%lu\n", sizeof(int));
@@ -420,7 +420,7 @@ int main(int argc, const char** argv) {
 
     printf("\n");
     return 0;
-}
+} */
 
 
 
